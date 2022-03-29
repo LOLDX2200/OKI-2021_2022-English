@@ -5,7 +5,7 @@
 Consists
 a. Program template
 b. defintion of class mqueue 
-Author: Daniel Olkowski / Olimpijskie Kolo Informatyczne
+Author: Maciej Młynarczyk
  */
 
 #include <iostream>
