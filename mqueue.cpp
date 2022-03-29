@@ -2,7 +2,7 @@
 //class implementing queue in C++
 //the same functionality as STL (Standard Template Library ) class queue in C++ 
 //with usage example
-//Version 1.2
+//Version 1.3
 Consists
 a. Program template
 b. defintion of class mqueue 
@@ -25,7 +25,16 @@ public:
         return true; 
     return false; 
  }	
- 
+ void push(int value) {
+    if (  empty() == true ) {
+       elements.push_back(value);
+	   first = last = 0;
+	   return;
+    }
+    elements.push_back(value);
+    ++last;
+ }	
+
 private:
  vector<int> elements;
  int first, last;
@@ -34,19 +43,9 @@ private:
 int main() {
  mqueue	payments;
  
- cout << "empty?: " << payments.empty() << "\n"; 
+ cout << "a1: empty?: " << payments.empty() << "\n"; 
+  payments.push(5); 
+ cout << "a2: empty?: " << payments.empty() << "\n"; 
 
  return 0;
 }
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
