@@ -2,7 +2,7 @@
 //class implementing queue in C++
 //the same functionality as STL (Standard Template Library ) class queue in C++ 
 //with usage example
-//Version 1.3
+//Version 1.4
 Consists
 a. Program template
 b. defintion of class mqueue 
@@ -11,6 +11,10 @@ d. empty() method
 Author: Maciej Młynarczyk
  */
  
+#include <iostream>
+#include <vector>
+using namespace std;
+
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -34,7 +38,21 @@ public:
     elements.push_back(value);
     ++last;
  }	
-
+ int dequeue() {
+   int value;
+   if ( empty() ) {
+      return value;
+   }
+   if ( first == last) {
+      value = elements[first];
+      first = last = -1;
+	   elements.clear();
+	  return value;
+   }
+   value = elements[first];
+   ++first;
+   return value;
+ }
 private:
  vector<int> elements;
  int first, last;
@@ -42,10 +60,18 @@ private:
 
 int main() {
  mqueue	payments;
+ int value;
  
- cout << "a1: empty?: " << payments.empty() << "\n"; 
-  payments.push(5); 
- cout << "a2: empty?: " << payments.empty() << "\n"; 
-
+ cout << "empty?: " << payments.empty() << "\n";
+ payments.push(5);
+ payments.push(-3);
+ payments.push(8);
+ cout << "empty?: " << payments.empty() << "\n";
+ cout << "serviced: " << payments.dequeue() << "\n";
+ cout << "serviced: " << payments.dequeue() << "\n";
+ payments.push(11);
+ cout << "serviced: " << payments.dequeue() << "\n";
+ cout << "serviced: " << payments.dequeue() << "\n";
+ cout << "empty?: " << payments.empty() << "\n";
  return 0;
 }
