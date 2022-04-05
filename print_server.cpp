@@ -50,7 +50,7 @@ public:
    if ( first == last) {
       value = elements[first];
       first = last = -1;
-	   elements.clear();
+      elements.clear();
 	  return value;
    }
    value = elements[first];
@@ -85,11 +85,22 @@ int main() {
      	  cout << " expected time is " <<  expected_time << " seconds. \n";
 		  break;	
        case 'g':
-          cin >> time;
-     	  cout << "Request g\n";
+          cin >> time;   //15
+          if ( printer.empty() ) {
+             cout << "Printer is ready.\n";	
+		     break;	
+		  }
+          start_time = printer.dequeue(); //7
+          print_time = time-start_time; //15-7
+          total_print_time += print_time; 
+          ++number_of_so_far_prints;
+          average_print_time = total_print_time / number_of_so_far_prints;
+          longest_print = max (longest_print, print_time);   //max 3 i 8       
+     	  cout << "Printer is ready. Print time: " << print_time << " seconds.\n";	
 		  break;	
        case 's':
-     	  cout << "Request s\n";
+          cout << "Stats: Longest queue: " << longest_queue << ", longest waiting time: ";
+          cout << longest_print << " seconds.\n";	
 		  break;	
 	}
  }
